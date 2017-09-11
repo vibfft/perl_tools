@@ -1,0 +1,33 @@
+#Please note that the Python script needs to reside in tc/scripts directory
+#tc == test case directory is created automatically when the b2p.pl script is run
+#and clean.pl is run afterwards.  Make sure that clean.pl points to a local test
+#server.
+
+mkdir a 
+echo "b" > a/aa 
+
+p4 configure set dm.integ.engine=3
+
+p4 add -t text a/aa
+p4 submit -d "add two files"
+
+p4 integ a/... b/...
+p4 submit -d "a to b" 
+
+python tc/scripts/edit_files.py 3 a/aa
+python tc/scripts/edit_files.py 3 b/aa
+
+p4 integ b/... a/...
+p4 integ a/... b/...
+p4 resolve -at
+p4 submit -d t 
+
+p4 sync b/aa#2,2 a/aa#3,3
+p4 delete a/aa
+p4 submit -d t 
+
+p4 filelog //depot/a/aa //depot/b/aa
+p4 integ -o b/... a/...
+p4 resolve -at
+p4 submit -d t 
+p4 filelog //depot/a/aa //depot/b/aa
