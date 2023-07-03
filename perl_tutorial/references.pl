@@ -18,3 +18,27 @@ my @arry_two = ( 1, 2, 3, 4 );
 my $ref_four = \@arry_two;
 $ref_four->[3] = "four";
 print "$_\n" foreach @{$ref_four};
+
+# literal hash, parens
+my %hash = (
+    one => 'uno',
+    two => 'dos',
+    three => 'tres'
+);
+
+my $href = \%hash;
+
+foreach my $k ( sort keys %{$href} ) {
+    print "$k : $href->{$k}\n";
+}
+
+# anonymous hash, curly braces
+my $href_two = {
+    one => 'tuno',
+    two => 'tdos',
+    three => 'ttres'
+};
+
+foreach my $k ( sort keys %{$href_two} ) {
+    print "$k : $href_two->{$k}\n";
+}
