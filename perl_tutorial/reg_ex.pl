@@ -80,3 +80,10 @@ print $str_three =~ /(lin.*?e)/;
 print "\n\nUsage of '\S':\n";
 my @arry_one = $str_three =~ /(\S+)/g;
 print "$_\n" foreach @arry_one;
+
+print "\n\nUsage of '\S' without parenthesis:\n";
+my @arry_one = $str_three =~ /\S+/g;
+print "$_\n" foreach @arry_one;
+
+# special characters to escape for regex
+# { } [ ] ( ) ^ $ . | * + ? \
