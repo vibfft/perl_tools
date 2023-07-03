@@ -5,6 +5,9 @@
 
 #func(), two parens are function call operator
 
+use strict;
+use warnings;
+
 func('Fred', 'Barney', 'Wilma', 'Betty');
 
 sub func {
