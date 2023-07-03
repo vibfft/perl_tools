@@ -37,13 +37,46 @@ print $s =~ $re_g ? 'True':'False';
 # s modifier treats the string as a single line
 print "\n\nUsage of 's' modifier\n";
 my $str_two = "This is a line of text\nmore text\nmore text\n";
+#                                   match      match
 my $re_s = qr/t.m/s;
 print "$_\n" foreach $str_two =~ /t.m/sg;
 print $str_two =~ $re_s ? 'True':'False';
 
 # m modifier allows for a multiple line match
 print "\n\nUsage of 'm' modifier\n";
-my $str_two = "This is a line of text\nmore text\nmore text\n";
+$str_two = "This is a line of text\nmore text\nmore text\n";
+#                                   match      match
 my $re_m = qr/^m/m;
 print "$_\n" foreach $str_two =~ /^m/mg;
 print $str_two =~ $re_m ? 'True':'False';
+
+# extracting matches
+my $str_three = "This is a line of text";
+#                1st       2nd  3rd
+if ( $str_three =~ /(..is).*(..ne).(..)/ ) {
+    print "\n\n";
+    print "1st match: $1\n";
+    print "2nd match: $2\n";
+    print "3rd match: $3\n";
+} else {
+    print "There was no match";
+}
+
+# getting list of matches
+print "\n\nGetting a list of matches\n";
+my @arry = $str_three =~ /i(.)/g;
+print "$_\n" foreach @arry;
+
+# $s =~ /a{3,}/ at least match 3 'a'
+
+# greedy example
+print "\n\nGreedy example\n";
+print $str_three =~ /(lin.*e)/;
+
+print "\n\nNon-Greedy example\n";
+print $str_three =~ /(lin.*?e)/;
+
+# '\s' matches white spaces, '\S' matches non-white spaces
+print "\n\nUsage of '\S':\n";
+my @arry_one = $str_three =~ /(\S+)/g;
+print "$_\n" foreach @arry_one;
