@@ -87,3 +87,6 @@ print "$_\n" foreach @arry_one;
 
 # special characters to escape for regex
 # { } [ ] ( ) ^ $ . | * + ? \
+
+print "\n\nSplit a string:\n";
+print "$_\n" foreach split(/\s+/, $str_three);
